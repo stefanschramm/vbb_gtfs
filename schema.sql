@@ -1,5 +1,7 @@
-
--- Schema should be compatible with PostgreSQL 9 and MySQL 5
+-- Database schema for GTFS data provided by VBB
+-- http://www.datenfragen.de/openvbb/GTF_VBB_BVG_20110530.zip
+-- The schema should be compatible with PostgreSQL 9 and MySQL 5
+-- Some constraints are stronger than the GTFS specification itself.
 
 CREATE TABLE agency (
 	agency_id INT PRIMARY KEY,
