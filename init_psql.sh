@@ -2,13 +2,14 @@
 
 DATABASE="vbb"
 
+# Place where the GTFS textfiles are. Default: same directory as this script
 DIR=$(readlink -f $(dirname $0))
 
-dropdb ${DATABASE}
-createdb ${DATABASE}
-psql ${DATABASE} < schema.sql
+dropdb ${DATABASE} || exit
+createdb ${DATABASE} || exit
+psql ${DATABASE} < schema.sql || exit
 
 for TABLE in agency calendar calendar_dates routes shapes trips stops stop_times transfers ; do
-	psql ${DATABASE} -c "COPY ${TABLE} FROM '/tmp/${TABLE}.txt' WITH CSV HEADER;"
+	psql ${DATABASE} -c "COPY ${TABLE} FROM '${DIR}/${TABLE}.txt' WITH CSV HEADER;" || exit
 done
 
