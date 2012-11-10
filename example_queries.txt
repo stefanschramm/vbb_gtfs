@@ -1,0 +1,18 @@
+Stop names of all trips of a route:
+
+SELECT trips.trip_id, stops.stop_name, stop_times.departure_time
+FROM routes
+JOIN trips ON routes.route_id = trips.route_id
+JOIN stop_times ON trips.trip_id = stop_times.trip_id
+JOIN stops ON stop_times.stop_id = stops.stop_id
+WHERE route_short_name = 'U2'
+ORDER BY trips.trip_id, stop_times.stop_sequence;
+
+
+All trains leaving a specific station:
+
+SELECT stops.stop_name, stop_times.trip_id, trips.trip_headsign, stop_times.departure_time
+FROM stops
+JOIN stop_times ON stops.stop_id = stop_times.stop_id
+JOIN trips ON stop_times.trip_id = trips.trip_id
+WHERE stops.stop_name = 'U Eberswalder Str. Bstggl.1';
