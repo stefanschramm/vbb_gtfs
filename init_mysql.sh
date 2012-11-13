@@ -10,7 +10,7 @@ DATABASE="vbb"
 # Place where the GTFS textfiles are. Default: same directory as this script
 DIR=$(readlink -f $(dirname $0))
 
-mysql -v --user ${USERNAME} -p"${PASSWORD}" -e "DROP DATABASE ${DATABASE};" || exit
+mysql -v --user ${USERNAME} -p"${PASSWORD}" -e "DROP DATABASE ${DATABASE};"
 mysql -v --user ${USERNAME} -p"${PASSWORD}" -e "CREATE DATABASE ${DATABASE};" || exit
 mysql -v --user ${USERNAME} -p"${PASSWORD}" ${DATABASE} < schema.sql || exit
 
